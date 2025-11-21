@@ -23,8 +23,8 @@ public class RetirementInvestment {
                     balance = getBalance();
                     rate = getRate();
                     years = getYear();
-                    fixedInvestment(balance, rate, years);
-                    fixedInvestment2(balance, rate, years);
+                    fixedInvestmentaBalance(balance, rate, years);
+                    fixedInvestmentContribution(balance, rate, years);
                     break;
                 case 2:
                     System.out.println(option + " Option chosen");
@@ -64,7 +64,7 @@ public class RetirementInvestment {
         scanner.close();
     }
 
-    public static void fixedInvestment(double principal,double rate,double years){
+    public static void fixedInvestmentaBalance(double principal,double rate,double years){
           System.out.println("Function 1 ");
         double balance =principal;
         System.out.println("Year\t|\tBalance");
@@ -75,7 +75,7 @@ public class RetirementInvestment {
         }
     }
 
-    public static void fixedInvestment2(double principal,double rate,double years){
+    public static void fixedInvestmentContribution(double principal,double rate,double years){
         System.out.println("Fucntion 2 ");
         double balance = 0;
         System.out.println("Year\t|\tBalance");
