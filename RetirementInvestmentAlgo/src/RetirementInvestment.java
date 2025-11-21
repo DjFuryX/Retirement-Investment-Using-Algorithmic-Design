@@ -20,7 +20,11 @@ public class RetirementInvestment {
             switch (option) {// case structure is used to determine option selected
                 case 1:
                     // Calculate Fixed Investment with fixed rate
-                    System.out.println(option + " Option chosen");
+                    balance = getBalance();
+                    rate = getRate();
+                    years = getYear();
+                    fixedInvestment(balance, rate, years);
+                    fixedInvestment2(balance, rate, years);
                     break;
                 case 2:
                     System.out.println(option + " Option chosen");
@@ -58,6 +62,27 @@ public class RetirementInvestment {
         }
         System.out.println("\n\nGoodbye\nClosing application.......");// closing message
         scanner.close();
+    }
+
+    public static void fixedInvestment(double principal,double rate,double years){
+          System.out.println("Function 1 ");
+        double balance =principal;
+        System.out.println("Year\t|\tBalance");
+
+        for(int x=1;x<=years;x++){
+            balance = balance*(rate+1);
+            System.out.println(x+"\t\t"+balance);
+        }
+    }
+
+    public static void fixedInvestment2(double principal,double rate,double years){
+        System.out.println("Fucntion 2 ");
+        double balance = 0;
+
+        for (int i=0;i<years-1;i++){
+            balance = (balance*(rate+1))+principal;
+        }
+        System.out.println("Balance "+balance);
     }
 
     public static double maximumExpensed(double balance, double rate, double years) {
