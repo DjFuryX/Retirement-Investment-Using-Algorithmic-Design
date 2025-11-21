@@ -23,8 +23,7 @@ public class RetirementInvestment {
                     balance = getBalance();
                     rate = getRate();
                     years = getYear();
-                    fixedInvestmentBalance(balance, rate, years);
-                    fixedInvestmentContribution(balance, rate, years);
+            		System.out.printf("After %.0f years, your initial balance of $%.2f at a fixed compounded interest rate of %.2f, yields a final balance of $%.2f\n", years, balance, rate, fixedInvestor(balance, rate, years));		
                     break;
                 case 2:
             
@@ -63,28 +62,16 @@ public class RetirementInvestment {
         scanner.close();
     }
 
-    public static void fixedInvestmentBalance(double principal,double rate,double years){
-          System.out.println("Function 1 ");
+    public static double fixedInvestor(double principal, double rate, double years){
         double balance =principal;
-        System.out.println("Year\t|\tBalance");
 
-        for(int x=1;x<=years;x++){
+        for(int i=0; i<years; i++){
             balance = balance*(rate+1);
-           System.out.println(x+1+"\t\t"+String.format("%.2f", balance));
         }
+        
+        return balance;
     }
-
-    public static void fixedInvestmentContribution(double principal,double rate,double years){
-        System.out.println("Fucntion 2 ");
-        double balance = 0;
-        System.out.println("Year\t|\tBalance");
-        for (int i=0;i<years;i++){
-            balance = (balance*(rate+1))+principal;
-            System.out.println(i+1+"\t\t"+String.format("%.2f", balance));
-        }
-
-    }
-
+    
     public static double maximumExpensed(double balance, double rate, double years) {
 
         double low = 0; 
@@ -132,7 +119,7 @@ public class RetirementInvestment {
                 + "    EXIT                                                                         |");
         System.out.println(
                 "\t\t +-------------------------------------------------------------------------------------+");
-        System.out.println("\nPlease select with the " + CYN + "digits" + RST + " on the left:  ");// prompts for user
+        System.out.print("\nPlease select with the " + CYN + "digits" + RST + " on the left:  ");// prompts for user
                                                                                                    // option
 
         int option = -1;
@@ -153,7 +140,7 @@ public class RetirementInvestment {
         double money = 0;
         while (true) {
 
-            System.out.println("\nPlease Enter Customer" + CYN + " Balance" + RST);
+            System.out.print("\nPlease Enter Customer" + CYN + " Balance " + RST);
             try {
                 money = scanner.nextDouble(); // store balance as a double
                 scanner.nextLine(); 
@@ -174,7 +161,7 @@ public class RetirementInvestment {
         double money = 0;
         while (true) {
 
-            System.out.println("\nPlease Enter Customer" + CYN + " Expense " + RST + "per year");
+            System.out.print("\nPlease Enter Customer" + CYN + " Expense " + RST + "per year ");
             try {
                 money = scanner.nextDouble(); // store expense as a double
                 scanner.nextLine(); 
@@ -195,7 +182,7 @@ public class RetirementInvestment {
         double year = 0;
         while (true) {
 
-            System.out.println("\nPlease Enter total " + CYN + "years " + RST);
+            System.out.print("\nPlease Enter total " + CYN + "years " + RST);
             try {
                 year = scanner.nextDouble(); // store year as a double
                 scanner.nextLine(); 
@@ -215,7 +202,7 @@ public class RetirementInvestment {
     static double getRate() {
         double rate = 0;
         while (true) {
-            System.out.println("\nPlease Enter Customer" + CYN + " interest rate"+RST+" as a decimal");
+            System.out.print("\nPlease Enter Customer" + CYN + " interest rate"+RST+" as a decimal ");
             try {
                 rate = scanner.nextDouble(); // store rate as a double
                 scanner.nextLine(); 
