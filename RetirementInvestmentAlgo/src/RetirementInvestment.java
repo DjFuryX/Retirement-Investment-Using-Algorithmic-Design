@@ -71,18 +71,19 @@ public class RetirementInvestment {
 
         for(int x=1;x<=years;x++){
             balance = balance*(rate+1);
-            System.out.println(x+"\t\t"+balance);
+           System.out.println(x+1+"\t\t"+String.format("%.2f", balance));
         }
     }
 
     public static void fixedInvestment2(double principal,double rate,double years){
         System.out.println("Fucntion 2 ");
         double balance = 0;
-
-        for (int i=0;i<years-1;i++){
+        System.out.println("Year\t|\tBalance");
+        for (int i=0;i<years;i++){
             balance = (balance*(rate+1))+principal;
+            System.out.println(i+1+"\t\t"+String.format("%.2f", balance));
         }
-        System.out.println("Balance "+balance);
+
     }
 
     public static double maximumExpensed(double balance, double rate, double years) {
