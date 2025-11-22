@@ -46,6 +46,25 @@ public class RetirementInvestment {
                     break;
                 case 3:
                     // Calculate How long Retirement Funds will last
+                    balance = getBalance();
+                    double expense = getExpense();
+                    rate = getRate();
+
+                    System.out.print("\033[H\033[2J"); // clears screen
+                    System.out.println(
+                        "\n\t\t +-------------------------+ Retirement Duration Calculator +-------------------------+");
+
+                    int yearsLasted = finallyRetired(balance, expense, rate);
+
+                    System.out.println(CYN + "Starting Balance: $" + RST + balance);
+                    System.out.println(CYN + "Annual Withdrawal: $" + RST + expense);
+                    System.out.println(CYN + "Interest Rate: " + RST + rate);
+
+                    if (yearsLasted == Integer.MAX_VALUE) {
+                        System.out.println("\nAt this interest rate and annual withdrawal, the balance will NOT deplete.\n");
+                    } else {
+                        System.out.println("\nYour retirement funds will last for: " + CYN + yearsLasted + " years" + RST + ".\n");
+                    }
                     break;
                 case 4:
                     // Calculate maximum sustainable annual withdrawal for specified years
@@ -116,6 +135,43 @@ public class RetirementInvestment {
     return balance;
 }
 
+    //Author: Lashawn Green
+    public static int finallyRetired(double balance, double expense, double rate) {
+        // Validate inputs
+        if (balance <= 0) {
+            return 0; // already depleted
+        }
+        if (expense <= 0) {
+            // If expense is zero or negative, the balance never depletes
+            return Integer.MAX_VALUE;
+        }
+
+        int years = 0;
+        final int MAX_YEARS = 10000; // safety cap to avoid infinite loops
+
+        while (balance > 0 && years < MAX_YEARS) {
+            // Apply interest
+            balance = balance * (1.0 + rate);
+
+            // Withdraw expense
+            balance -= expense;
+
+            years++;
+
+            // If balance grows to an extremely large value (due to negative expense or huge rate),
+            // break and report it will not deplete.
+            if (Double.isInfinite(balance) || balance > 1e18) {
+                return Integer.MAX_VALUE;
+            }
+        }
+
+        if (years >= MAX_YEARS) {
+            // Did not deplete within a reasonable number of years -> assume it won't deplete.
+            return Integer.MAX_VALUE;
+        }
+
+        return years;
+    }
 //Author: Norman Martin
     public static double maximumExpensed(double balance, double rate, double years) {
 
