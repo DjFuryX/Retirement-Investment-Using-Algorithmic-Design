@@ -81,7 +81,7 @@ public class RetirementInvestment {
         scanner.close();
     }
 
-    //Diwani Walters
+    //Author: Diwani Walters
     public static void fixedInvestor(double principal, double rate, double years) {
         double balance = principal;
         System.out.println("Year\t|\tBalance");
