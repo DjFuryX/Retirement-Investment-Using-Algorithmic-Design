@@ -24,16 +24,15 @@ public class RetirementInvestment {
                     balance = getBalance();
                     rate = getRate();
                     years = getYear();
-                    fixedInvestmentBalance(balance, rate, years);
-                    fixedInvestmentContribution(balance, rate, years);
+                    fixedInvestment(balance, rate, years);
                     break;
                 case 2:
                      // Calculate Fixed Investment with varaible rates
                     balance = getBalance();
                     years = getYear();
-                    LinkedList<Double> rateList = new LinkedList<>();
+                    LinkedList<Double> rateList = new LinkedList<>(); // ist of rates
                    
-                    for(int x=1;x<=years;x++){
+                    for(int x=1;x<=years;x++){// prompt user for rates per year
                         System.out.print(CYN +"Year: "+ x +RST);
                         rateList.add(getRate());
                         System.err.println();
@@ -82,8 +81,8 @@ public class RetirementInvestment {
         scanner.close();
     }
 
-    public static void fixedInvestmentBalance(double principal, double rate, double years) {
-        System.out.println("Function 1 ");
+    //
+    public static void fixedInvestment(double principal, double rate, double years) {
         double balance = principal;
         System.out.println("Year\t|\tBalance");
 
@@ -93,18 +92,8 @@ public class RetirementInvestment {
         }
     }
 
-    public static void fixedInvestmentContribution(double principal, double rate, double years) {
-        System.out.println("Fucntion 2 ");
-        double balance = 0;
-        System.out.println("Year\t|\tBalance");
-        for (int i = 0; i < years; i++) {
-            balance = ((balance + principal) * (rate + 1));
-            System.out.println(i + 1 + "\t\t" + String.format("%.2f", balance));
-        }
 
-    }
-
-
+//Author: Hasani Malcolm
     public static double variableInvestor(double principal,LinkedList<Double> rateList) {
     
     double balance = principal;
@@ -127,6 +116,7 @@ public class RetirementInvestment {
     return balance;
 }
 
+//Author: Norman Martin
     public static double maximumExpensed(double balance, double rate, double years) {
 
         double low = 0;
@@ -135,6 +125,7 @@ public class RetirementInvestment {
         double high = balance;
         double tolerance = .00001; // accuracy for expense
         double current_balance = 0;
+
         while ((high - low) > tolerance) {
             oldMid =mid;
             mid = (low + high) / 2; // get midpoint expense for current iteration
@@ -154,6 +145,7 @@ public class RetirementInvestment {
         }
         return low; // best estimate of maximum sustainable annual withdrawal
     }
+
 
     public static int mainMenu() {
         LocalDateTime myDateObj = LocalDateTime.now(); // create date object
