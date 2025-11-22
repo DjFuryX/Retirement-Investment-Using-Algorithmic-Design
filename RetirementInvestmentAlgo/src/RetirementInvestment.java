@@ -35,7 +35,7 @@ public class RetirementInvestment {
                     for(int x=1;x<=years;x++){// prompt user for rates per year
                         System.out.print(CYN +"Year: "+ x +RST);
                         rateList.add(getRate());
-                        System.err.println();
+                        System.out.println();
                     }
                     System.out.print("\033[H\033[2J"); // clears console screen
                     System.out.println(
