@@ -24,7 +24,7 @@ public class RetirementInvestment {
                     balance = getBalance();
                     rate = getRate();
                     years = getYear();
-                    fixedInvestment(balance, rate, years);
+                    fixedInvestor(balance, rate, years);
                     break;
                 case 2:
                      // Calculate Fixed Investment with varaible rates
@@ -81,8 +81,8 @@ public class RetirementInvestment {
         scanner.close();
     }
 
-    //
-    public static void fixedInvestment(double principal, double rate, double years) {
+    //Diwani Walters
+    public static void fixedInvestor(double principal, double rate, double years) {
         double balance = principal;
         System.out.println("Year\t|\tBalance");
 
