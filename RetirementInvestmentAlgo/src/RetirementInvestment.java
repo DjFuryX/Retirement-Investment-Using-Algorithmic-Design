@@ -15,6 +15,7 @@ public class RetirementInvestment {
         double balance = 0;
         double rate = 0;
         double years = 0;
+        double expense = 0;
 
         int option = mainMenu();
         while (option != 0) {// Start while loop for main menu
@@ -27,32 +28,32 @@ public class RetirementInvestment {
                     fixedInvestor(balance, rate, years);
                     break;
                 case 2:
-                     // Calculate Fixed Investment with varaible rates
+                    // Calculate Fixed Investment with varaible rates
                     balance = getBalance();
                     years = getYear();
-                    LinkedList<Double> rateList = new LinkedList<>(); // ist of rates
-                   
-                    for(int x=1;x<=years;x++){// prompt user for rates per year
-                        System.out.print(CYN +"Year: "+ x +RST);
-                        rateList.add(getRate());
+                    LinkedList<Double> rateList = new LinkedList<>(); // list of rates
+
+                    for (int x = 1; x <= years; x++) {// prompt user for rates per year
+                        System.out.print(CYN + "Year: " + x + RST);
+                        rateList.add(getRate()); // add rates to list
                         System.out.println();
                     }
                     System.out.print("\033[H\033[2J"); // clears console screen
                     System.out.println(
                             "\n\t\t +-------------------------+ Calculate Fixed Investment with varaible rates +-------------------------+");
-                    
-                    variableInvestor(balance, rateList);
-                    
+
+                    variableInvestor(balance, rateList);// simulate varaible investment
+
                     break;
                 case 3:
                     // Calculate How long Retirement Funds will last
                     balance = getBalance();
-                    double expense = getExpense();
+                    expense = getExpense();
                     rate = getRate();
 
                     System.out.print("\033[H\033[2J"); // clears screen
                     System.out.println(
-                        "\n\t\t +-------------------------+ Retirement Duration Calculator +-------------------------+");
+                            "\n\t\t +-------------------------+ Retirement Duration Calculator +-------------------------+");
 
                     int yearsLasted = finallyRetired(balance, expense, rate);
 
@@ -61,9 +62,11 @@ public class RetirementInvestment {
                     System.out.println(CYN + "Interest Rate: " + RST + rate);
 
                     if (yearsLasted == Integer.MAX_VALUE) {
-                        System.out.println("\nAt this interest rate and annual withdrawal, the balance will NOT deplete.\n");
+                        System.out.println(
+                                "\nAt this interest rate and annual withdrawal, the balance will NOT deplete.\n");
                     } else {
-                        System.out.println("\nYour retirement funds will last for: " + CYN + yearsLasted + " years" + RST + ".\n");
+                        System.out.println(
+                                "\nYour retirement funds will last for: " + CYN + yearsLasted + " years" + RST + ".\n");
                     }
                     break;
                 case 4:
@@ -100,7 +103,7 @@ public class RetirementInvestment {
         scanner.close();
     }
 
-    //Author: Diwani Walters
+    // Author: Diwani Walters
     public static void fixedInvestor(double principal, double rate, double years) {
         double balance = principal;
         System.out.println("Year\t|\tBalance");
@@ -111,31 +114,28 @@ public class RetirementInvestment {
         }
     }
 
+    // Author: Hasani Malcolm
+    public static void variableInvestor(double principal, LinkedList<Double> rateList) {
 
-//Author: Hasani Malcolm
-    public static double variableInvestor(double principal,LinkedList<Double> rateList) {
-    
-    double balance = principal;
+        double balance = principal;
 
-    System.out.println(CYN+"Year | Rate   | Balance"+RST);
-    System.out.println("---------------------------");
+        System.out.println(CYN + "Year | Rate   | Balance" + RST);
+        System.out.println("---------------------------");
 
-    // continuously looping through the year rate    
-    for (int i = 0; i < rateList.size(); i++) {
-        double rate = rateList.get(i);
-        
-        // applying the interest for the current year balance 
-        balance = balance * (1.0 + rate);
-        
-        // print the year's number rate and balance
-        System.out.printf("%4d | %5.2f%% | $%.2f%n", 
-                         i + 1, rate * 100.0, balance);
+        // continuously looping through the year rate
+        for (int i = 0; i < rateList.size(); i++) {
+            double rate = rateList.get(i);
+
+            // applying the interest for the current year balance
+            balance = balance * (1.0 + rate);
+
+            // print the year's number rate and balance
+            System.out.printf("%4d | %5.2f%% | $%.2f%n",
+                    i + 1, rate * 100.0, balance);
+        }
     }
-    
-    return balance;
-}
 
-    //Author: Lashawn Green
+    // Author: Lashawn Green
     public static int finallyRetired(double balance, double expense, double rate) {
         // Validate inputs
         if (balance <= 0) {
@@ -158,7 +158,8 @@ public class RetirementInvestment {
 
             years++;
 
-            // If balance grows to an extremely large value (due to negative expense or huge rate),
+            // If balance grows to an extremely large value (due to negative expense or huge
+            // rate),
             // break and report it will not deplete.
             if (Double.isInfinite(balance) || balance > 1e18) {
                 return Integer.MAX_VALUE;
@@ -166,26 +167,29 @@ public class RetirementInvestment {
         }
 
         if (years >= MAX_YEARS) {
-            // Did not deplete within a reasonable number of years -> assume it won't deplete.
+            // Did not deplete within a reasonable number of years -> assume it won't
+            // deplete.
             return Integer.MAX_VALUE;
         }
 
         return years;
     }
-//Author: Norman Martin
+
+    // Author: Norman Martin
     public static double maximumExpensed(double balance, double rate, double years) {
 
         double low = 0;
         double mid = 0;
-        double oldMid =0;
+        double oldMid = 0;
         double high = balance;
         double tolerance = .00001; // accuracy for expense
         double current_balance = 0;
 
         while ((high - low) > tolerance) {
-            oldMid =mid;
+            oldMid = mid;
             mid = (low + high) / 2; // get midpoint expense for current iteration
-            if (oldMid == mid) return mid; // reached the limit of the computer preciseness
+            if (oldMid == mid)
+                return mid; // reached the limit of the computer preciseness
             current_balance = balance; // set balance to original value
 
             // simulate compound growth - withdrawals for each year
@@ -201,7 +205,6 @@ public class RetirementInvestment {
         }
         return low; // best estimate of maximum sustainable annual withdrawal
     }
-
 
     public static int mainMenu() {
         LocalDateTime myDateObj = LocalDateTime.now(); // create date object
@@ -225,7 +228,7 @@ public class RetirementInvestment {
         System.out.println(
                 "\t\t +-------------------------------------------------------------------------------------+");
         System.out.print("\nPlease select with the " + CYN + "digits" + RST + " on the left:  ");// prompts for user
-                                                                                                   // option
+                                                                                                 // option
 
         int option = -1;
         try {
@@ -261,7 +264,8 @@ public class RetirementInvestment {
             }
         }
     }
-    //used to get user expense
+
+    // used to get user expense
     static double getExpense() {
         double money = 0;
         while (true) {
@@ -282,7 +286,8 @@ public class RetirementInvestment {
             }
         }
     }
-    //used to get total years
+
+    // used to get total years
     static double getYear() {
         double year = 0;
         while (true) {
@@ -303,7 +308,8 @@ public class RetirementInvestment {
             }
         }
     }
-    //used to get interest rate
+
+    // used to get interest rate
     static double getRate() {
         double rate = 0;
         while (true) {
