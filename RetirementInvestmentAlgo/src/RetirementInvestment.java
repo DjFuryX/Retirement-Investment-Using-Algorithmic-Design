@@ -184,7 +184,7 @@ public class RetirementInvestment {
         return option;
     };
 
-    // used to get user balance or expense
+    // used to get user balance
     static double getBalance() {
         double money = 0;
         while (true) {
@@ -205,7 +205,7 @@ public class RetirementInvestment {
             }
         }
     }
-
+    //used to get user expense
     static double getExpense() {
         double money = 0;
         while (true) {
@@ -226,7 +226,7 @@ public class RetirementInvestment {
             }
         }
     }
-
+    //used to get total years
     static double getYear() {
         double year = 0;
         while (true) {
@@ -247,7 +247,7 @@ public class RetirementInvestment {
             }
         }
     }
-
+    //used to get interest rate
     static double getRate() {
         double rate = 0;
         while (true) {
