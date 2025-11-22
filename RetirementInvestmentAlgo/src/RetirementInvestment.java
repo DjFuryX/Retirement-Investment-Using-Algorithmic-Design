@@ -24,7 +24,8 @@ public class RetirementInvestment {
                     balance = getBalance();
                     rate = getRate();
                     years = getYear();
-            		System.out.printf("After %.0f years, your initial balance of $%.2f at a fixed compounded interest rate of %.2f, yields a final balance of $%.2f\n", years, balance, rate, fixedInvestor(balance, rate, years));		
+                    fixedInvestmentBalance(balance, rate, years);
+                    fixedInvestmentContribution(balance, rate, years);
                     break;
                 case 2:
                      // Calculate Fixed Investment with varaible rates
