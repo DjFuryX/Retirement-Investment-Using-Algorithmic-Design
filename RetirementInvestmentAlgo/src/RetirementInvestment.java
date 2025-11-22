@@ -24,8 +24,7 @@ public class RetirementInvestment {
                     balance = getBalance();
                     rate = getRate();
                     years = getYear();
-                    fixedInvestmentBalance(balance, rate, years);
-                    fixedInvestmentContribution(balance, rate, years);
+            		System.out.printf("After %.0f years, your initial balance of $%.2f at a fixed compounded interest rate of %.2f, yields a final balance of $%.2f\n", years, balance, rate, fixedInvestor(balance, rate, years));		
                     break;
                 case 2:
                      // Calculate Fixed Investment with varaible rates
@@ -176,7 +175,7 @@ public class RetirementInvestment {
                 + "    EXIT                                                                         |");
         System.out.println(
                 "\t\t +-------------------------------------------------------------------------------------+");
-        System.out.println("\nPlease select with the " + CYN + "digits" + RST + " on the left:  ");// prompts for user
+        System.out.print("\nPlease select with the " + CYN + "digits" + RST + " on the left:  ");// prompts for user
                                                                                                    // option
 
         int option = -1;
@@ -197,7 +196,7 @@ public class RetirementInvestment {
         double money = 0;
         while (true) {
 
-            System.out.println("\nPlease Enter Customer" + CYN + " Balance" + RST);
+            System.out.print("\nPlease Enter Customer" + CYN + " Balance " + RST);
             try {
                 money = scanner.nextDouble(); // store balance as a double
                 scanner.nextLine();
@@ -218,7 +217,7 @@ public class RetirementInvestment {
         double money = 0;
         while (true) {
 
-            System.out.println("\nPlease Enter Customer" + CYN + " Expense " + RST + "per year");
+            System.out.print("\nPlease Enter Customer" + CYN + " Expense " + RST + "per year ");
             try {
                 money = scanner.nextDouble(); // store expense as a double
                 scanner.nextLine();
@@ -239,7 +238,7 @@ public class RetirementInvestment {
         double year = 0;
         while (true) {
 
-            System.out.println("\nPlease Enter total " + CYN + "years " + RST);
+            System.out.print("\nPlease Enter total " + CYN + "years " + RST);
             try {
                 year = scanner.nextDouble(); // store year as a double
                 scanner.nextLine();
