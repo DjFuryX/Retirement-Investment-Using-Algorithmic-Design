@@ -1,3 +1,5 @@
+// Hosted at: https://github.com/DjFuryX/Retirement-Investment-Using-Algorithmic-Design.git
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
@@ -110,7 +112,7 @@ public class RetirementInvestment {
 
         for (int x = 1; x <= years; x++) {
             balance = balance * (rate + 1);
-            System.out.println(x + 1 + "\t\t" + String.format("%.2f", balance));
+            System.out.println(x + "\t\t" + String.format("%.2f", balance));
         }
     }
 
